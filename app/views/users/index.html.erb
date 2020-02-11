@@ -1,7 +1,10 @@
 <h1>list of users</h1>
 
 <% @users.each do |user| %>
-  <p><%= link_to(user.username, "/users/#{user.id}") %></p>
-  <p><%= user.location %></p>
-  <p><%= user.rate %></p>
+<div>
+  <% if user.avatar.attached? %>
+    <%= image_tag user.avatar.variant(auto_orient: true), class: "my-avatar" %>
+  <% end %>
+</div>
+  <p> <%= link_to(user.username, "/users/#{user.id}") %> | <%= user.location %> | <%= user.rate %></p>
 <% end %>

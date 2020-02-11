@@ -1,5 +1,9 @@
-tutor profile
-
+<h1>Tutor profile</h1>
+<div>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar.variant(auto_orient: true), class: "my-avatar" %>
+  <% end %>
+</div>
 <p><%= @user.username %></p>
 <p><%= @user.email %></p>
 <p><%= @user.location %></p>
@@ -8,3 +12,7 @@ tutor profile
 <p><%= @user.experience %></p>
 <p><%= @user.english %></p>
 <p><%= @user.skype %></p>
+<p>blog posts</p>
+<% @user.posts.each do |post| %>
+<p><%= link_to(post.title, "/posts/#{post.id}") %></p>
+<% end %> 

@@ -1,5 +1,9 @@
 <h1>list of posts</h1>
 
 <% @posts.each do |post| %>
-  <p><%= link_to(post.title, "/posts/#{post.id}") %></p>
+  <p><%= link_to(post.title, "/posts/#{post.id}") %>
+    <%= image_tag post.pic.variant(auto_orient: true), class: "my-pic" %>
+    <%= post.created_at.strftime("%B %d %Y") %>
+      <%= post.user.username %>
+    </p>
 <% end %>

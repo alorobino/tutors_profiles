@@ -1,3 +1,14 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.login-container, .application-container {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.my-pic {
+  width: 200px;
+}
+.my-avatar {
+  width: 50px;
+  border-radius: 50%;
+}
