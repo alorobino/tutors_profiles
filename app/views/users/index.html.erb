@@ -1,5 +1,15 @@
-<h1>list of users</h1>
-
+<p>search tutors by location, gender</p>
+<div class="">
+  <%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= select_tag(:gender, options_for_select(["Male", "Female"], params[:gender]), prompt: "All genders") %>
+  <%= check_box_tag :english, 1, 'active' %> english
+  <%= check_box_tag :skype, 1, 'active' %> skype
+  <%= submit_tag ("Search") %>
+<% end %>
+<p><%= link_to "see all", '/users' %></p>
+</div>
+<hr>
 <% @users.each do |user| %>
 <div>
   <% if user.avatar.attached? %>

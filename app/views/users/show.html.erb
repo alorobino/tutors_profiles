@@ -7,12 +7,15 @@
 <p><%= @user.username %></p>
 <p><%= @user.email %></p>
 <p><%= @user.location %></p>
-<p><%= @user.rate %></p>
-<p><%= @user.gender %></p>
-<p><%= @user.experience %></p>
-<p><%= @user.english %></p>
-<p><%= @user.skype %></p>
-<p>blog posts</p>
+<p>Rate/hr: <%= @user.rate %></p>
+<p>Gender: <%= @user.gender %></p>
+<p>Experience (yrs): <%= @user.experience %></p>
+<p><%= "English: yes" if @user.english %></p>
+<p><%= "Skype: yes" if @user.skype %></p>
+<% if %>
+<%@user.posts.length > 0 %>
+<p>blog posts:</p>
+<%end%>
 <% @user.posts.each do |post| %>
 <p><%= link_to(post.title, "/posts/#{post.id}") %></p>
-<% end %> 
+<% end %>

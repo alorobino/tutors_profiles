@@ -1,6 +1,6 @@
 
 <h1><%= @post.title %></h1>
-<%= image_tag @post.pic.variant(auto_orient: true), class: "my-pic" %>
+<%= image_tag @post.pic.variant(auto_orient: true), class: "my-pic" if @post.pic.present? %>
 <p><%= @post.content %></p>
 <p class="date">author: <%= link_to @post.user.username, @post.user %></p>
 <p class="date">created: <%= @post.created_at.strftime("%B %d %Y") %></p>
@@ -8,3 +8,14 @@
 <div class=btn><%= button_to "Delete", @post, method: :delete,data: {confirm: "Are you sure?"}%></div>
 <div class=btn><%= button_to "Update",edit_post_path, method: :get %></div>
 <%end%>
+
+<h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br>
+    <p><%= comment.body %></p>
+    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>

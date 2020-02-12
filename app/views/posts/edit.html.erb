@@ -2,5 +2,7 @@
   image: <%= f.file_field :pic %>
   <div>caption: <%= f.text_area :title, required: true %></div>
   <div>content: <%= f.text_area :content, required: true %></div>
+  <div>topic: <%= f.text_area :topic_list, required: true %></div>
+  <div>level: <%= f.text_area :level_list, required: true %></div>
   <%= f.submit %>
   <% end %>

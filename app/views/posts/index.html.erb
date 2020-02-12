@@ -1,5 +1,18 @@
-<h1>list of posts</h1>
-
+<div class="">
+<p>search blog posts by topic or tutor's username</p>
+<%= form_tag(posts_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+<p><%= link_to "see all", '/posts' %></p>
+</div>
+<%= simple_form_for :search, url: '/posts', method: "GET" do |f| %>
+  <%= f.input :levels, label: "Level",  collection: $levels, as: :check_boxes %>
+  <%= f.input :topics, label: "Topic", collection: $topics, as: :check_boxes %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  <%= link_to "Reset", '/posts'  %>
+<% end %>
+<hr>
 <% @posts.each do |post| %>
   <p><%= link_to(post.title, "/posts/#{post.id}") %>
     <%= image_tag post.pic.variant(auto_orient: true), class: "my-pic" %>

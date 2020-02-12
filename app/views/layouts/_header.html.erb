@@ -16,13 +16,11 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
     <% if user_signed_in? %>
-      <div class="margin-left">logged in as <strong><%= current_user.username %></strong></div>
-      <a class="nav-link" href="<%=edit_user_registration_path%>">edit profile</a>
-      <%= link_to "logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-    <a class="nav-link" href="<%="/"%>">Home</a>
-    <a class="nav-link" href="<%="/users"%>">Tutors</a>
-    <a class="nav-link" href="<%="/posts"%>">Blog</a>
-  <a class="nav-link" href="/posts/new">New</a>
+      <div class="margin-left">Logged in as <strong><%= current_user.username %></strong></div>
+      <a class="nav-link" href="<%=edit_user_registration_path%>">Edit profile</a>
+    <a class="nav-link" href="<%="/users/#{current_user.id}"%>">Profile</a>
+  <a class="nav-link" href="/posts/new">New post</a>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
     <% else %>
     <a class="nav-link" href="<%="/"%>">Home</a>
     <a class="nav-link" href="<%="/users"%>">Tutors</a>

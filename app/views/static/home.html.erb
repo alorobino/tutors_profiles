@@ -1,5 +1,15 @@
-<h1>homepage</h1>
-<p>here you can search for blog posts by tags</p>
+<h1>¡bienvenido!</h1>
+<p>Colombian Spanish tutors</p>
+<p>Search for tutors - enter location</p>
+<div class="">
+  <%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= select_tag(:gender, options_for_select(["Male", "Female"], params[:gender]), prompt: "All genders") %>
+  <%= check_box_tag :english, 1, 'active' %> english
+  <%= check_box_tag :skype, 1, 'active' %> skype
+  <%= submit_tag ("Search") %>
+<% end %>
+<p><%= link_to "see all", '/users' %></p>
+</div>
+<p>here you can search for blog posts by topic</p>
 <p><%= link_to "blog", '/posts' %></p>
-<p>here you can search for tutors</p>
-<p><%= link_to "tutors", '/users' %></p>

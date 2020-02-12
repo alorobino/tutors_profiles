@@ -1,10 +1,21 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   def index
-    @posts = Post.all
-  end
+    # @posts = Post.search(params[:search])
+    # def index
+    if params["search"]
+      @filter = params["search"]["levels"].concat(params["search"]["topicds"]).flatten.reject(&:blank?)
+      @posts = @filter.empty? ? Post.all : Post.all.tagged_with(@filter, any: true)
+    else
+      @posts = Post.all
+    end
+ end
+
+
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.all
+    @comment = @post.comments.build
   end
 
   def new
@@ -54,8 +65,9 @@ class PostsController < ApplicationController
     end
   end
 
+
   private
     def post_params
-      params.require(:post).permit(:title, :pic, :content)
+      params.require(:post).permit(:title, :pic, :content, :user_id, :search, :topic_list, :level_list)
     end
 end

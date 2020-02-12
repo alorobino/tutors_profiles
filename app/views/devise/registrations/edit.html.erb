@@ -5,6 +5,10 @@
   <div class=”field”> (Upload your new profile picture below!)
   <%= f.file_field :avatar %>
   </div>
+    <div class="field">
+      <%= f.radio_button :gender, 'Male', :checked => true %> Male
+      <%= f.radio_button :gender, 'Female' %> Female
+    </div>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -26,8 +30,10 @@
     <%= f.number_field :experience %>
   </div>
   <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.check_box :english, {}, "true", "false" %>  <%= f.label :English %>
+  </div>
+  <div class="field">
+    <%= f.check_box :skype, {}, "true", "false" %>  <%= f.label :Skype %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

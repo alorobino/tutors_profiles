@@ -56,3 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'image_processing'
+
+gem 'acts-as-taggable-on'
+
+gem 'simple_form'
+
+gem 'bootstrap'
