@@ -1,20 +1,41 @@
-<p>search tutors by location, gender</p>
+<h2>Tutors</h2>
+<p>Enter city or see all</p>
 <div class="">
+
   <%= form_tag(users_path, method: :get) do %>
   <%= text_field_tag(:search, params[:search]) %>
-  <%= select_tag(:gender, options_for_select(["Male", "Female"], params[:gender]), prompt: "All genders") %>
-  <%= check_box_tag :english, 1, 'active' %> english
-  <%= check_box_tag :skype, 1, 'active' %> skype
-  <%= submit_tag ("Search") %>
-<% end %>
-<p><%= link_to "see all", '/users' %></p>
-</div>
-<hr>
-<% @users.each do |user| %>
-<div>
-  <% if user.avatar.attached? %>
-    <%= image_tag user.avatar.variant(auto_orient: true), class: "my-avatar" %>
-  <% end %>
-</div>
-  <p> <%= link_to(user.username, "/users/#{user.id}") %> | <%= user.location %> | <%= user.rate %></p>
-<% end %>
+  <%= select_tag(:gender, options_for_select(["Male", "Female"], params[:gender]), include_blank: "Any gender") %>
+  <%# <%= check_box_tag :english, 1, 'active' %>
+    <%# <%= check_box_tag :skype, 1, 'active' %>
+      <%= submit_tag ("Search") %>
+    <% end %>
+    <p><%= button_to "See all", '/users', method: :get %></p>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-auto">
+        <% @users.each do |user| %>
+          <div>
+
+            <% if user.avatar.attached? %>
+              <%= link_to(image_tag(user.avatar.variant(auto_orient: true), class: "my-avatar"), user) %>
+            <% end %>
+            <p></p>
+
+            <p><%= link_to(user.username, "/users/#{user.id}") %></p>
+
+            <p>
+              city:
+              <%= user.location %>
+              | rate:
+              <%= user.rate %></p>
+          </div>
+          <p></p>
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>

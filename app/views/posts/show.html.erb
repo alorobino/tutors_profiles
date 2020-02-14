@@ -1,13 +1,25 @@
 
-<h1><%= @post.title %></h1>
+
 <%= image_tag @post.pic.variant(auto_orient: true), class: "my-pic" if @post.pic.present? %>
+<p></p>
+<h1><%= @post.title %></h1>
+<p></p>
 <p><%= @post.content %></p>
 <p class="date">author: <%= link_to @post.user.username, @post.user %></p>
 <p class="date">created: <%= @post.created_at.strftime("%B %d %Y") %></p>
+<p>level: <%= @post.level_list %></p>
+<% if @post.keywords.length > 0 %>
+<p>tags:
+  <%end%>
+<% @post.keywords.each do |keyword|%>
+<span class="tag"> <%= keyword.name %></span><span> </span>
+<% end %></p>
 <% if current_user == @post.user %>
 <div class=btn><%= button_to "Delete", @post, method: :delete,data: {confirm: "Are you sure?"}%></div>
 <div class=btn><%= button_to "Update",edit_post_path, method: :get %></div>
 <%end%>
+
+
 
 <h3>Comments</h3>
 <% @comments.each do |comment| %>

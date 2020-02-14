@@ -1,13 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
   def index
-    # @posts = Post.search(params[:search])
-    # def index
+    @posts = Post.all.includes(:keywords)
     if params["search"]
-      @filter = params["search"]["levels"].concat(params["search"]["topicds"]).flatten.reject(&:blank?)
-      @posts = @filter.empty? ? Post.all : Post.all.tagged_with(@filter, any: true)
-    else
-      @posts = Post.all
+      if params["search"]["keyword"]
+        keywords = Keyword.where("name in (?)", params["search"]["keyword"].split)
+
+        @posts = @posts.select do |post|
+          (keywords & post.keywords).any?
+        end
+      elsif params["search"]["levels"].flatten.reject(&:blank?)
+        @filter = params["search"]["levels"].flatten.reject(&:blank?)
+      @posts = @filter.empty? ? Post.all :
+      Post.all.tagged_with(@filter, any: true)
+        end
     end
  end
 
@@ -26,6 +32,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
       if @post.save
+        keyword = Keyword.find(params[:keyword])
+        @post.keywords << keyword
     redirect_to @post
     flash[:notice]  = "post created!"
       else
@@ -65,9 +73,8 @@ class PostsController < ApplicationController
     end
   end
 
-
   private
     def post_params
-      params.require(:post).permit(:title, :pic, :content, :user_id, :search, :topic_list, :level_list)
+      params.require(:post).permit(:title, :pic, :content, :user_id, :search, :level_list)
     end
 end

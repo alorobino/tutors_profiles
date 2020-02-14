@@ -1,6 +1,1 @@
-<%= form_with model: @post do |f| %>
-  image: <%= f.file_field :pic %>
-  <div>title: <%= f.text_area :title, required: true %></div>
-  <div>content: <%= f.text_area :content, required: true %></div>
-  <%= f.submit %>
-  <% end %>
+<%= render "layouts/postsform" %>

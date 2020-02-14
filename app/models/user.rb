@@ -11,12 +11,8 @@ class User < ApplicationRecord
     if search
       results = User.where("location LIKE ?", "%#{search}%")
       results = results.where(gender: params[:gender]) unless params[:gender].blank?
-      results = results.where(english: params[:english])
-      results = results.where(skype: params[:skype])
-      # elsif User.where("gender LIKE ?", "%#{search}%")
-      # elsif english = User.where("english LIKE ?", "%#{search}%")
-      # else User.all
-      # end
+      # results = results.where(english: params[:english])
+      # results = results.where(skype: params[:skype])
       results
     else
       User.all

@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   margin-top: 100px;
+   text-align: center;
+   background-image: linear-gradient(to right, #f5f687, #fab95b);
+   background-size: cover;
+   font-family: 'Montserrat', sans-serif;
+
+ }
+ .blog-search {
+   display: inline-block;
+ }
+
+.title-font {
+  font-size: 1.2em;
+}

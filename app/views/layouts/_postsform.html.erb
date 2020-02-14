@@ -1,0 +1,23 @@
+<%= form_with model: @post do |f| %>
+  image: <%= f.file_field :pic %>
+  <p></p>
+  <div>title: <%= f.text_area :title, required: true %></div>
+  <p></p>
+  <div>content: <%= f.text_area :content, required: true %></div>
+  <p></p>
+
+  <div class="">
+    <%= f.radio_button :level_list, 'Any', :checked => true %> All
+    <%= f.radio_button :level_list, 'A' %> A
+    <%= f.radio_button :level_list, 'B' %> B
+    <%= f.radio_button :level_list, 'C' %> C
+  <p>LEVEL</p>
+
+
+    <%= select_tag "keyword", options_from_collection_for_select(Keyword.all, "id", "name" ), prompt: "select keyword(s)", multiple: true %>
+<p></p>
+    <%= f.submit %>
+
+    </div>
+
+<% end %>

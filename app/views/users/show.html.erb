@@ -1,21 +1,31 @@
-<h1>Tutor profile</h1>
+<h2><%= @user.username %></h2>
 <div>
   <% if @user.avatar.attached? %>
     <%= image_tag @user.avatar.variant(auto_orient: true), class: "my-avatar" %>
   <% end %>
 </div>
-<p><%= @user.username %></p>
-<p><%= @user.email %></p>
-<p><%= @user.location %></p>
+<p></p>
+<div class="presentation">
+  <p>Presentation:</p>
+<p><%= @user.description %></p>
+</div>
+<p></p>
+<div class="info">
+<p>Email: <%= @user.email %></p>
+<p>City: <%= @user.location %></p>
 <p>Rate/hr: <%= @user.rate %></p>
 <p>Gender: <%= @user.gender %></p>
 <p>Experience (yrs): <%= @user.experience %></p>
 <p><%= "English: yes" if @user.english %></p>
 <p><%= "Skype: yes" if @user.skype %></p>
+</div>
+<p></p>
+<div class="posts-list">
 <% if %>
+<p>blog posts (<%= @user.posts.length %>)</p>
 <%@user.posts.length > 0 %>
-<p>blog posts:</p>
 <%end%>
 <% @user.posts.each do |post| %>
 <p><%= link_to(post.title, "/posts/#{post.id}") %></p>
 <% end %>
+</div>

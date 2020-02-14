@@ -1,22 +1,61 @@
-<div class="">
-<p>search blog posts by topic or tutor's username</p>
-<%= form_tag(posts_path, method: :get) do %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag ("Search") %>
-<% end %>
-<p><%= link_to "see all", '/posts' %></p>
-</div>
-<%= simple_form_for :search, url: '/posts', method: "GET" do |f| %>
-  <%= f.input :levels, label: "Level",  collection: $levels, as: :check_boxes %>
-  <%= f.input :topics, label: "Topic", collection: $topics, as: :check_boxes %>
-  <%= f.submit "Search", class: "btn btn-primary" %>
-  <%= link_to "Reset", '/posts'  %>
-<% end %>
+<h2>Blog</h2>
 <hr>
-<% @posts.each do |post| %>
-  <p><%= link_to(post.title, "/posts/#{post.id}") %>
-    <%= image_tag post.pic.variant(auto_orient: true), class: "my-pic" %>
-    <%= post.created_at.strftime("%B %d %Y") %>
-      <%= post.user.username %>
-    </p>
+<%# <%= form_tag(posts_path, method: :get) do %>
+  <%# <%= text_field_tag(:search, params[:search]) %>
+  <%# <%= submit_tag ("Search") %>
+<%# <% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <p>search by tag</p>
+      <%= form_for :search, url: "/posts", method: :get do |form| %>
+         <%= form.text_field :keyword %>
+         <p></p>
+         <%= form.submit "search", class: "btn btn-primary" %>
+       <% end %>
+
+        #<br>
+        <% Keyword.all.each do |tag| %>
+        <%= tag.name %><br>
+        <% end %>
+
+        </div>
+
+        <div class="col-sm-2">
+
+<%= simple_form_for :search, url: '/posts', method: "GET" do |f| %>
+<%= f.input :levels, label: "Search by level",  collection: $levels, as: :check_boxes %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  <p></p>
+<p> <%= link_to "see all", '/posts'  %></p>
 <% end %>
+
+</div>
+<div class="col-sm-auto">
+<% @posts.reverse.each do |post| %>
+  <div class="card">
+    <%= image_tag post.pic.variant(auto_orient: true), class: "my-pic" %>
+    <div class="card-body">
+    <div class="card-title">
+    <%= link_to(post.title, "/posts/#{post.id}") %></div>
+    <div class="card-title">
+    by <%= post.user.username %>
+    | <%= post.created_at.strftime("%B %d %Y") %> </div>
+      <span class="tag-blue">
+      level: <%= post.level_list %>
+      </span>
+      <% if post.keywords.length > 0 %>
+      <p>tags:
+        <%end%>
+
+      <% post.keywords.each do |keyword|%>
+      <span class="tag"> <%= keyword.name %></span><span> </span>
+      <% end %></p>
+      </div>
+      </div>
+      <p></p>
+<% end %>
+</div>
+</div>
+</div>

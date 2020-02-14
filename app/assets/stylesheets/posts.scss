@@ -1,14 +1,51 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 .login-container, .application-container {
   margin-top: 50px;
   margin-left: 20px;
 }
 .my-pic {
-  width: 200px;
+  width: 400px;
 }
 .my-avatar {
-  width: 50px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
+  // float:left;
+}
+
+.home {
+  // background-image: url(fifa.png);
+  // background-color: yellow;
+  // background-blend-mode: multiply;
+  background-size: cover;
+}
+
+.empty-row {
+  height: 20px;
+}
+
+.presentation, .info {
+  border: 1px solid black;
+  padding: 50px;
+}
+
+.posts-list {
+  margin-bottom: 50px;
+}
+
+.home-div {
+    margin-top: 90px;
+}
+
+.in-col {
+  font-style: italic;
+}
+
+.tag {
+  background-color: yellow;
 }

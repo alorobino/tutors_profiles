@@ -2,7 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class=”field”> (Upload your new profile picture below!)
+  <div class=”field”> profile pic: approx. square image please
   <%= f.file_field :avatar %>
   </div>
     <div class="field">
@@ -34,6 +34,10 @@
   </div>
   <div class="field">
     <%= f.check_box :skype, {}, "true", "false" %>  <%= f.label :Skype %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

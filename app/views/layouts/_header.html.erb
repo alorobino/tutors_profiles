@@ -1,5 +1,10 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
-  <a class="navbar-brand" href="<%="/"%>">spanishflex</a>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light title-font ">
+  <%= image_tag("logo.svg", alt: "logo", size: "50x50") %>
+  <a class="nav-link" href="<%="/"%>">saltamontes</a>
+
+  <!-- <a class="navbar-brand" href="#">
+          <img src="http://placehold.it/150x50?text=Logo" alt="">
+        </a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -16,17 +21,19 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
     <% if user_signed_in? %>
-      <div class="margin-left">Logged in as <strong><%= current_user.username %></strong></div>
-      <a class="nav-link" href="<%=edit_user_registration_path%>">Edit profile</a>
-    <a class="nav-link" href="<%="/users/#{current_user.id}"%>">Profile</a>
-  <a class="nav-link" href="/posts/new">New post</a>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+      <div class="margin-left">logged in as <strong><%= current_user.username %></strong></div>
+      <a class="nav-link" href="<%=edit_user_registration_path%>">edit profile</a>
+    <a class="nav-link" href="<%="/users/#{current_user.id}"%>">profile</a>
+  <a class="nav-link" href="<%="/posts/new"%>">new post</a>
+  <a class="nav-link" href="<%="/contact"%>">contact</a>
+  <%= link_to "logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
     <% else %>
-    <a class="nav-link" href="<%="/"%>">Home</a>
-    <a class="nav-link" href="<%="/users"%>">Tutors</a>
-    <a class="nav-link" href="<%="/posts"%>">Blog</a>
-    <a class="nav-link" href="<%=new_user_registration_path%>">Sign up</a>
-<a class="nav-link" href="<%=new_user_session_path%>">Login</a>
+    <a class="nav-link" href="<%="/"%>">home</a>
+    <a class="nav-link" href="<%="/users"%>">tutors</a>
+    <a class="nav-link" href="<%="/posts"%>">blog</a>
+    <a class="nav-link" href="<%="/contact"%>">contact</a>
+    <a class="nav-link" href="<%=new_user_registration_path%>">sign up</a>
+<a class="nav-link" href="<%=new_user_session_path%>">login</a>
 
     <% end %>
   </div>
