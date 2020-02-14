@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   def self.search(search, params = {})
     if search
-      results = User.where("location LIKE ?", "%#{search}%")
+      results = User.where("location ILIKE ?", "%#{search}%")
       results = results.where(gender: params[:gender]) unless params[:gender].blank?
       # results = results.where(english: params[:english])
       # results = results.where(skype: params[:skype])
