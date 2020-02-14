@@ -5,8 +5,6 @@
   <%= form_tag(users_path, method: :get) do %>
   <%= text_field_tag(:search, params[:search]) %>
   <%= select_tag(:gender, options_for_select(["Male", "Female"], params[:gender]), include_blank: "Any gender") %>
-  <%# <%= check_box_tag :english, 1, 'active' %>
-    <%# <%= check_box_tag :skype, 1, 'active' %>
       <%= submit_tag ("Search") %>
     <% end %>
     <p><%= button_to "See all", '/users', method: :get %></p>

@@ -1,3 +1,2 @@
 class KeywordsController < ApplicationController
-  
 end
